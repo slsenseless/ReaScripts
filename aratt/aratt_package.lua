@@ -6,7 +6,7 @@
 @license
 	GNU GPLv3
 @version
-	1.0
+	1.1
 @links
 	GitHub (Source code) https://github.com/slsenseless/aratt
 @metapackage

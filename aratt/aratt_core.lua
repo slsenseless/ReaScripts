@@ -1,21 +1,25 @@
 -- @noindex
 local aratt = {}
 
--- Layout names / Track default names
--- /!\ Layout names vstiPanelLayout, audioPanelLayout and midiPanelLayout should be different !
+-- Layout/Icons names
+-- /!\ Layout names vstiPanelLayout, audioPanelLayout, midiPanelLayout and folderPanelLayout should be different !
 
 aratt.vstiPanelLayout = "VSTi"
-aratt.vstiMixerLayout = "VSTi" -- Can be nil, default will be taken
+aratt.vstiMixerLayout = "VSTi" -- Put "" for default layout
 aratt.vstiName = "VSTi: "
+aratt.vstiIcon = "synth.png" -- Put "" for none
 aratt.audioPanelLayout = "Audio"
-aratt.audioMixerLayout = "Audio" -- Can be nil, default will be taken
+aratt.audioMixerLayout = "Audio" -- Put "" for default layout
 aratt.audioName = "Out"
+aratt.audioIcon = "amp_combo.png" -- Put "" for none
 aratt.folderPanelLayout = "Folder"
-aratt.folderMixerLayout = "Folder" -- Can be nil, default will be taken
+aratt.folderMixerLayout = "Folder" -- Put "" for default layout
 aratt.folderName = ""
+aratt.folderIcon = "folder.png" -- Put "" for none
 aratt.midiPanelLayout = "Midi"
-aratt.midiMixerLayout = "Midi" -- Can be nil, default will be taken
+aratt.midiMixerLayout = "Midi" -- Put "" for default layout
 aratt.midiName = "Midi"
+aratt.midiIcon = "midi.png" -- Put "" for none
 aratt.defaultPanelLayout = "Global layout default"
 aratt.defaultMixerLayout = "Global layout default"
 
@@ -85,6 +89,25 @@ function aratt.CreateTrack(pos, depth, name)
 end
 
 -------------------------------------
+-- Tells whether or not an icon should be applied
+-- @param MediaTrack track Track to apply icon
+-- @param string iconName Icon name to apply
+-- @return boolean True if icon should be changed, false otherwise
+-------------------------------------
+function aratt.changeIcon(track, iconName)
+	local retval, currentIcon = reaper.GetSetMediaTrackInfo_String( track, "P_ICON", "", false )
+	if currentIcon == nil or currentIcon == "" or
+		(currentIcon == aratt.midiIcon and aratt.isMidiTrack(track)) or
+		(currentIcon == aratt.audioIcon and aratt.isAudioTrack(track)) or
+		(currentIcon == aratt.folderIcon and aratt.isFolderTrack(track)) or
+		(currentIcon == aratt.vstiIcon and aratt.isVstiTrack(track))
+	then
+		return true
+	end
+	return false
+end
+
+-------------------------------------
 -- Transform a track to audioTrack
 -- @param MediaTrack track to transform
 -- @return MediaTrack track transformed
@@ -94,18 +117,21 @@ function aratt.TransformToAudio(track)
 	if stringNeedBig == nil or stringNeedBig == "" then
 		reaper.GetSetMediaTrackInfo_String(track, "P_NAME", aratt.audioName, true)
 	end
+	
+	if aratt.changeIcon(track,aratt.audioIcon) then
+		retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_ICON", aratt.audioIcon, true )
+	end
+	
 	if aratt.stateAudioShow() == 0 then
 		reaper.SetMediaTrackInfo_Value(track, "B_SHOWINTCP", 0)
 	end
 	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", aratt.audioPanelLayout, true ) -- Apply audio out layout on panel
-	if aratt.audioMixerLayout ~= nil then
-		retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_MCP_LAYOUT", aratt.audioMixerLayout, true ) -- Apply audio out layout on mixer
-	end
+	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_MCP_LAYOUT", aratt.audioMixerLayout, true ) -- Apply audio out layout on mixer
 	local vol = reaper.GetMediaTrackInfo_Value( track, "D_VOL")
 	if vol == 0 then
 		reaper.SetMediaTrackInfo_Value(track, "D_VOL", 1)
 	end
-	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 30)
+	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 60)
 	reaper.SetMediaTrackInfo_Value(track, "I_RECARM", 0)
 	return track
 end
@@ -131,15 +157,18 @@ function aratt.TransformToFolder(track)
 	if stringNeedBig == nil or stringNeedBig == "" then
 		reaper.GetSetMediaTrackInfo_String(track, "P_NAME", aratt.folderName, true)
 	end
-	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", aratt.folderPanelLayout, true ) -- Apply audio out layout on panel
-	if aratt.folderMixerLayout ~= nil then
-		retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_MCP_LAYOUT", aratt.folderMixerLayout, true ) -- Apply audio out layout on mixer
+	
+	if aratt.changeIcon(track,aratt.folderIcon) then
+		retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_ICON", aratt.folderIcon, true )
 	end
+	
+	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", aratt.folderPanelLayout, true ) -- Apply audio out layout on panel
+	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_MCP_LAYOUT", aratt.folderMixerLayout, true ) -- Apply audio out layout on mixer
 	local vol = reaper.GetMediaTrackInfo_Value( track, "D_VOL")
 	if vol == 0 then
 		reaper.SetMediaTrackInfo_Value(track, "D_VOL", 1)
 	end
-	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 30)
+	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 60)
 	reaper.SetMediaTrackInfo_Value(track, "I_RECARM", 0)
 	return track
 end
@@ -164,12 +193,15 @@ function aratt.TransformToVsti(track)
 	if stringNeedBig == nil or stringNeedBig == "" then
 		reaper.GetSetMediaTrackInfo_String(track, "P_NAME", aratt.vstiName, true)
 	end
-	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", aratt.vstiPanelLayout, true ) -- Apply audio out layout on panel
-	if aratt.vstiMixerLayout ~= nil then
-		retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_MCP_LAYOUT", aratt.vstiMixerLayout, true ) -- Apply audio out layout on mixer
+	
+	if aratt.changeIcon(track,aratt.vstiIcon) then
+		retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_ICON", aratt.vstiIcon, true )
 	end
+	
+	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", aratt.vstiPanelLayout, true ) -- Apply audio out layout on panel
+	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_MCP_LAYOUT", aratt.vstiMixerLayout, true ) -- Apply audio out layout on mixer
 	reaper.SetMediaTrackInfo_Value(track, "B_MAINSEND", aratt.vstiSendParent)
-	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 30)
+	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 60)
 	reaper.SetMediaTrackInfo_Value(track, "I_RECARM", 0)
 	return track
 end
@@ -209,14 +241,18 @@ function aratt.TransformToMidi(track)
 	if stringNeedBig == nil or stringNeedBig == "" then
 		reaper.GetSetMediaTrackInfo_String(track, "P_NAME", aratt.midiName, true)
 	end
+	
+	if aratt.changeIcon(track,aratt.midiIcon) then
+		retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_ICON", aratt.midiIcon, true )
+	end
+	
 	if aratt.stateMidiShow() == 0 then
 		reaper.SetMediaTrackInfo_Value(track, "B_SHOWINMIXER", 0)
 	end
 	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", aratt.midiPanelLayout, true ) -- Apply midi layout on panel
-	if aratt.midiMixerLayout ~= nil then
-		retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_MCP_LAYOUT", aratt.midiMixerLayout, true ) -- Apply midi layout on mixer
-	end
+	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_MCP_LAYOUT", aratt.midiMixerLayout, true ) -- Apply midi layout on mixer
 
+	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 120)
 	reaper.SetMediaTrackInfo_Value(track, "B_MAINSEND", 0)
 	reaper.SetMediaTrackInfo_Value(track, "D_VOL", 0)
 	return track
@@ -239,6 +275,7 @@ end
 -- @return MediaTrack transformed track
 -------------------------------------
 function aratt.TransformToDefault(track)
+	reaper.GetSetMediaTrackInfo_String( track, "P_ICON", "", true )
 	local retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", aratt.defaultPanelLayout, true ) -- Apply default layout on panel
 	retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_MCP_LAYOUT", aratt.defaultMixerLayout, true ) -- Apply default layout on mixer
 	reaper.SetMediaTrackInfo_Value(track, "B_SHOWINMIXER", 1)
@@ -276,6 +313,15 @@ end
 function aratt.isVstiTrack(track)
 	local retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", "", false)
 	return stringNeedBig == aratt.vstiPanelLayout
+end
+
+-------------------------------------
+-- @param MediaTrack track Track to check
+-- @return boolean true if track is a folder, false otherwise
+-------------------------------------
+function aratt.isFolderTrack(track)
+	local retval, stringNeedBig = reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", "", false)
+	return stringNeedBig == aratt.folderPanelLayout
 end
 
 -------------------------------------
@@ -513,7 +559,7 @@ end
 -------------------------------------
 -- Automatically routes tracks
 -- @param table{MediaTrack} tracks Tracks to route
--- @return number 0 : succeed, -1 : wrong number of tracks, -2 : two tracks of the same type selected, -3 nothing to route
+-- @return number 0 : succeed, 1 : vsti and default selected, 2 : two tracks of the same type selected, 3 : nothing to route
 -------------------------------------
 function aratt.AutomaticRouting(tracks)
 	
@@ -535,18 +581,21 @@ function aratt.AutomaticRouting(tracks)
 				vstiTrack = track
 			else
 				reaper.ShowMessageBox( "Please select only one vsti track", "Cant route", 0 )
+				return 2
 			end
 		else
 			if otherTrack == nil then
 				otherTrack = track
 			else
 				reaper.ShowMessageBox( "Please select only one default track", "Cant route", 0 )
+				return 2
 			end
 		end
 	end
 	
 	if vstiTrack ~=nil and otherTrack ~= nil then
 		reaper.ShowMessageBox( "Please select one default OR one vsti track", "Cant route", 0 )
+		return 1
 	end
 
 	-- Do automatic routing
@@ -577,7 +626,7 @@ function aratt.AutomaticRouting(tracks)
 		end
 	else
 		reaper.ShowMessageBox( "Nothing to route / Dont know how to route", "Cant route", 0 )
-		return -3
+		return 3
 	end
 	
 	return 0
