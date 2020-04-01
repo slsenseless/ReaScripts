@@ -6,7 +6,7 @@
 @license
 	GNU GPLv3
 @version
-	1.1
+	1.2
 @links
 	GitHub (Source code) https://github.com/slsenseless/aratt
 @metapackage
@@ -19,6 +19,8 @@
 	[main=main] aratt_Create*.lua
 	[main=main] aratt_Transform*.lua
 	[main=main] aratt_ShowHide*.lua
+	[main=main] aratt_Remove*.lua
+	[main=main] aratt_Assisted*.lua
 @about
 	# ARATT 
 	## What is it ?

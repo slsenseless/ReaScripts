@@ -35,11 +35,11 @@ if not aratt.isVstiTrack(vstiTrack) then
 end
 
 local pos = aratt.GetInsertionPoint()
-local audioDepth = 1
-local midiDepth = -1
-if not midiInAudioTrack then
-	audioDepth = 0
-	midiDepth = 0
+local midiTrackDepth = 0
+local audioTrackDepth = 0
+if midiInAudioTrack then
+	midiTrackDepth = -1
+	audioTrackDepth = 1
 end
 
 local track_name = nil
@@ -57,29 +57,32 @@ if input_name then
 	 
 end
 
-local audioTrack = aratt.CreateAudioTrack(pos, audioDepth,track_name)
-local midiTrack = aratt.CreateMidiTrack(pos + 1, midiDepth,track_name)
+local midiTrack = aratt.CreateMidiTrack(pos,0,track_name)
+local audioTrack = aratt.CreateAudioTrack(pos,0,track_name)
 
-if aratt.AutomaticRouting({audioTrack,midiTrack,vstiTrack}) < 0 then
+reaper.SetMediaTrackInfo_Value(audioTrack, "I_FOLDERDEPTH", audioTrackDepth)
+reaper.SetMediaTrackInfo_Value(midiTrack, "I_FOLDERDEPTH", midiTrackDepth)
+
+if aratt.AutomaticRouting({audioTrack,midiTrack,vstiTrack}) > 0 then
 	reaper.DeleteTrack( audioTrack )
 	reaper.DeleteTrack( midiTrack )
 	reaper.ShowMessageBox( "Routing failed", "Routing error", 0 )
 	return -1
 end
 
-local vstiTrack =  reaper.GetSelectedTrack(0, 0)
-reaper.SetTrackSelected( audioTrack, true )
-reaper.SetTrackSelected( midiTrack, true )
+reaper.Main_OnCommand( 40297, 0 ) -- Unselect all track
+
+reaper.SetTrackSelected( vstiTrack, true )
 
 if random_color then
+	reaper.SetTrackSelected( midiTrack, true )
+	reaper.SetTrackSelected( audioTrack, true )
 	reaper.SetTrackSelected( vstiTrack, false )
 	reaper.Main_OnCommand( 40360, 0 ) -- Put one random color
+	reaper.SetTrackSelected( midiTrack, false )
+	reaper.SetTrackSelected( audioTrack, false )
 	reaper.SetTrackSelected( vstiTrack, true )
 end
-
-reaper.SetTrackSelected( audioTrack, false )
-reaper.SetTrackSelected( midiTrack, false )
-
 
 reaper.Undo_EndBlock("Audio and Midi Tracks created and routed to Vsti", 1)
 reaper.PreventUIRefresh(-1)

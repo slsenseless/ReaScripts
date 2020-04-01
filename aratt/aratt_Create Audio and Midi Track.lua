@@ -22,22 +22,31 @@ reaper.PreventUIRefresh(1)
 reaper.Undo_BeginBlock()
 
 local pos = aratt.GetInsertionPoint()
-local audioDepth = 1
-local midiDepth = -1
-if not midiInAudioTrack then
-	audioDepth = 0
-	midiDepth = 0
+local midiTrackDepth = 0
+local audioTrackDepth = 0
+if midiInAudioTrack then
+	midiTrackDepth = -1
+	audioTrackDepth = 1
 end
 
-local audioTrack = aratt.CreateAudioTrack(pos, audioDepth)
-local midiTrack = aratt.CreateMidiTrack(pos + 1, midiDepth)
+local midiTrack = aratt.CreateMidiTrack(pos)
+local audioTrack = aratt.CreateAudioTrack(pos)
+
+reaper.SetMediaTrackInfo_Value(audioTrack, "I_FOLDERDEPTH", audioTrackDepth)
+reaper.SetMediaTrackInfo_Value(midiTrack, "I_FOLDERDEPTH", midiTrackDepth)
 
 reaper.Main_OnCommand( 40297, 0 ) -- Unselect all track
-reaper.SetTrackSelected( audioTrack, true )
+
 reaper.SetTrackSelected( midiTrack, true )
+reaper.SetTrackSelected( audioTrack, true )
 
 if random_color then
 	reaper.Main_OnCommand( 40360, 0 ) -- Put one random color
+end
+
+if aratt.midi.template ~= "" then -- Bug about midi template... Bug will occurs if we execute this script twice in a row without unselect tracks
+	reaper.SetTrackSelected( midiTrack, false )
+	reaper.SetTrackSelected( audioTrack, false )
 end
 
 reaper.Undo_EndBlock("Audio and Midi Tracks created", 1)

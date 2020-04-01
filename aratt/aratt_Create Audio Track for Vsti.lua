@@ -44,5 +44,8 @@ if aratt.AutomaticRouting({audioTrack,vstiTrack}) < 0 then
 	return -1
 end
 
+reaper.Main_OnCommand( 40297, 0 ) -- Unselect all track
+reaper.SetTrackSelected( vstiTrack, true )
+
 reaper.Undo_EndBlock("Audio Track created and routed to Vsti", 1)
 reaper.PreventUIRefresh(-1)

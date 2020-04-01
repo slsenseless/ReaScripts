@@ -1,4 +1,3 @@
-; @noindex
 #>----------------------------------- GLOBALS -----------------------------------------
 version 6.0
 use_pngs 1
@@ -611,20 +610,8 @@ Layout "Folder"
 	set scale 1
 	calcTcpSecs
 	resetHides
-	doHideLogic 	tcp.recarm 		5
-	doHideLogic 	tcp.recmon 		6
-	doHideLogic 	tcp.label 		7
-	doHideLogic 	tcp.volume 		8
-	;doHideLogic 	tcp.io 			9 ; I like to keep routing anyway
-	doHideLogic 	fx_group 		10
-	doHideLogic 	tcp.env 		11
-	;doHideLogic 	pan_group 		12 ; I like to keep pan anyway
-	doHideLogic 	tcp.recmode 	13
-	doHideLogic 	input_group 	14
-	doHideLogic 	values 			15
-	doHideLogic 	meter_values	16*
 	
-	; HIDING EVERYTHING (except label and meter)
+	; HIDING EVERYTHING (except label)
 	set hideValues 			1
 	set hide_tcp.recarm  	1
 	set hide_tcp.recmon  	1
@@ -642,7 +629,7 @@ Layout "Folder"
 	;    element        	size  	padding?
 	then tcp.recarm 		20 			0
 	then tcp.recmon 		15 			0
-	then tcp.label 	  		240			0
+	then tcp.label 	  		300			0
 	then tcp.volume			100			0
 	then tcp.io 			34 			1
 	then fx_group 			36 			1
@@ -650,8 +637,13 @@ Layout "Folder"
 	then pan_group		tcp_PanSize		1
 	then tcp.recmode 		39 			1
 	then input_group 	tcp_InSize 		1
-	set tcp.label  .
+	
 	drawTcp scale
+	
+	set tcp_label_width 	- tcp.mute{x} 45
+	set tcp_label_y 		- - / tcp.size{1} 2 / tcp.label{h} 2 1
+	set tcp.label			[. tcp_label_y tcp_label_width . 0 0.5 0 0.5]
+	set tcp.label.margin 	[. . . . 0.5]
 
 EndLayout
 
@@ -1331,11 +1323,9 @@ Layout "Folder"
 	set mcp.label.color					[242 242 242]
 	
 	set mcp.extmixer.mode               [1]
-	set trackidx_pos					- [mcp.size{y}] [20]
-	set mcp.trackidx                    [0 trackidx_pos{0} mcp.size{x} 20 0 1 0 1]
+	set trackidx_pos					- mcp.size{y} 20
+	set mcp.trackidx                    [0 trackidx_pos mcp.size{x} 20 0 1 0 1]
 	set mcp.trackidx.margin             [0 0 0 0 0.5]
-	;set mcp.folder                      folderstate<0 [19 trackidx_pos{0} 7 18 0 1 0 1] [0 trackidx_pos{0} 18 18 0 1 0 1]
-	set mcp.folder						[0]
 	
 EndLayout
 

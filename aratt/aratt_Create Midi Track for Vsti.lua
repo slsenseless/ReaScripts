@@ -1,5 +1,5 @@
 -- @noindex
-local vsti_name = true -- false : Default name (aratt.midiName) ; true : Vsti name
+local vsti_name = true -- false : Default name (aratt.midi.name) ; true : Vsti name
 
 -- Optional if aratt_core is in reaper lua folder
 local script_path = debug.getinfo(1,'S').source:sub(2,-5) -- remove "@" and "file extension" from file name
@@ -43,6 +43,9 @@ if aratt.AutomaticRouting({midiTrack,vstiTrack}) < 0 then
 	reaper.ShowMessageBox( "Routing failed", "Routing error", 0 )
 	return -1
 end
+
+reaper.Main_OnCommand( 40297, 0 ) -- Unselect all track
+reaper.SetTrackSelected( vstiTrack, true )
 
 reaper.Undo_EndBlock("Midi Track created and routed to Vsti", 1)
 reaper.PreventUIRefresh(-1)
