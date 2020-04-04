@@ -21,6 +21,33 @@
 	[main=main] aratt_ShowHide*.lua
 	[main=main] aratt_Remove*.lua
 	[main=main] aratt_Assisted*.lua
+@changelog
+Version 1.2
+    - Add fx parameter (types can now be loaded with FXs)
+    - Add template parameter (types can now be a track template)
+    - Add midi input parameter
+	- Add height parameter
+    - Add "Remove Suffix" script
+    - Add "Assisted routing" script
+    - Improve folder tcp layout
+    - Fix show/hide track state when creating/transforming tracks (audio and midi)
+    - Various small fix
+    - Code refactoring
+Version 1.1
+    - Implement icons
+    - New auto routing script aratt_Automatic Routing static.lua with static routing enable
+    - Increase height of tracks (midi,audio,vsti and folder) in TCP
+    - Add return code to AutomaticRouting function
+Version 1.0
+    - Add track types
+        - Audio Out
+        - VSTi
+        - Folder
+        - MIDI
+    - Add automatic routing
+    - Add scripts to create, transform and route tracks
+    - Add script to show/hide audio in TCP
+    - Add script to show/hide midi in MCP
 @about
 	# ARATT 
 	## What is it ?

@@ -14,7 +14,8 @@ aratt.vsti = {
 	mixerLayout = "VSTi", -- Put "" for default layout
 	icon = "synth.png", -- Put "" for none
 	fx = {},
-	template = ""
+	template = "",
+	height = 60 -- 0 for default
 }
 
 aratt.audio = {
@@ -24,7 +25,8 @@ aratt.audio = {
 	mixerLayout = "Audio", -- Put "" for default layout
 	icon = "amp_combo.png", -- Put "" for none
 	fx = {"ReaEQ (Cockos)","ReaComp (Cockos)"},
-	template = ""
+	template = "",
+	height = 60 -- 0 for default
 }
 
 aratt.folder = {
@@ -34,7 +36,8 @@ aratt.folder = {
 	mixerLayout = "Folder", -- Put "" for default layout
 	icon = "folder.png", -- Put "" for none
 	fx = {}, -- leave it empty
-	template = "" -- leave it empty
+	template = "", -- leave it empty
+	height = 60 -- 0 for default
 }
 
 aratt.midi = {
@@ -44,7 +47,8 @@ aratt.midi = {
 	mixerLayout = "Midi", -- Put "" for default layout
 	icon = "midi.png", -- Put "" for none
 	fx = {},
-	template = "Midi.RTrackTemplate"
+	template = "",
+	height = 120 -- 0 for default
 }
 
 aratt.defaultPanelLayout = "Global layout default"
@@ -195,7 +199,9 @@ function aratt.TransformToAudio(track)
 	if vol == 0 then
 		reaper.SetMediaTrackInfo_Value(track, "D_VOL", 1)
 	end
-	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 60)
+	if aratt.audio.height ~= 0 then
+		reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", aratt.audio.height)
+	end
 	reaper.SetMediaTrackInfo_Value(track, "I_RECARM", 0)
 	reaper.SetMediaTrackInfo_Value(track, "B_MAINSEND", 1)
 	return track
@@ -234,7 +240,9 @@ function aratt.TransformToFolder(track)
 	if vol == 0 then
 		reaper.SetMediaTrackInfo_Value(track, "D_VOL", 1)
 	end
-	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 60)
+	if aratt.folder.height ~= 0 then
+		reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", aratt.folder.height)
+	end
 	reaper.SetMediaTrackInfo_Value(track, "I_RECARM", 0)
 	reaper.SetMediaTrackInfo_Value(track, "B_MAINSEND", 1)
 	return track
@@ -273,7 +281,9 @@ function aratt.TransformToVsti(track)
 		reaper.SetMediaTrackInfo_Value(track, "D_VOL", 1)
 	end
 	reaper.SetMediaTrackInfo_Value(track, "B_MAINSEND", aratt.vstiSendParent)
-	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 60)
+	if aratt.vsti.height ~= 0 then
+		reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", aratt.vsti.height)
+	end
 	reaper.SetMediaTrackInfo_Value(track, "I_RECARM", 0)
 	return track
 end
@@ -327,7 +337,9 @@ function aratt.TransformToMidi(track)
 	if aratt.midiInput then
 		reaper.SetMediaTrackInfo_Value( track, "I_RECINPUT", 4096 + aratt.midiInputDevice*32 + aratt.midiInputChannel )
 	end
-	reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", 120)
+	if aratt.midi.height ~= 0 then
+		reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", aratt.midi.height)
+	end
 	reaper.SetMediaTrackInfo_Value(track, "B_MAINSEND", 0)
 	reaper.SetMediaTrackInfo_Value(track, "D_VOL", 0)
 	return track
