@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="aratt" commit="6685abe10b3e36434ef8d375ad1653dfa7aa6c7f">
+<index version="1" name="SL ReaScripts" commit="f2eb9fde45cfef2f958b76fcebd3a353b6807627">
   <category name="aratt">
     <reapack name="aratt_package.lua" type="script" desc="ARATT (Automatic Routing And Track Types)">
       <metadata>
@@ -21,78 +21,163 @@
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Change your theme to Default_6.0_ARATT\sa180\par}
 }
 ]]></description>
-        <link rel="website" href="https://github.com/slsenseless/aratt">GitHub (Source code)</link>
+        <link rel="website" href="https://github.com/slsenseless/ReaScripts">GitHub (Source code)</link>
       </metadata>
       <version name="1.0" author="slsenseless" time="2020-03-16T13:30:59Z">
-        <source>https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_package.lua</source>
-        <source file="rtconfig.txt">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/rtconfig.txt</source>
-        <source file="aratt_core.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_core.lua</source>
-        <source file="aratt_template.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_template.lua</source>
-        <source main="main" file="aratt_Automatic Routing.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Automatic%20Routing.lua</source>
-        <source main="main" file="aratt_Create Audio Track for Vsti.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Audio%20Track%20for%20Vsti.lua</source>
-        <source main="main" file="aratt_Create Audio Track.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Audio%20Track.lua</source>
-        <source main="main" file="aratt_Create Audio and Midi Track for Vsti.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Audio%20and%20Midi%20Track%20for%20Vsti.lua</source>
-        <source main="main" file="aratt_Create Audio and Midi Track.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Audio%20and%20Midi%20Track.lua</source>
-        <source main="main" file="aratt_Create Folder Track.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Folder%20Track.lua</source>
-        <source main="main" file="aratt_Create Midi Track for Vsti.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Midi%20Track%20for%20Vsti.lua</source>
-        <source main="main" file="aratt_Create Midi Track.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Midi%20Track.lua</source>
-        <source main="main" file="aratt_Create Vsti Track.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Vsti%20Track.lua</source>
-        <source main="main" file="aratt_Transform to Audio.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Transform%20to%20Audio.lua</source>
-        <source main="main" file="aratt_Transform to Default.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Transform%20to%20Default.lua</source>
-        <source main="main" file="aratt_Transform to Folder.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Transform%20to%20Folder.lua</source>
-        <source main="main" file="aratt_Transform to Midi.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Transform%20to%20Midi.lua</source>
-        <source main="main" file="aratt_Transform to Vsti.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Transform%20to%20Vsti.lua</source>
-        <source main="main" file="aratt_ShowHide Audio Track.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_ShowHide%20Audio%20Track.lua</source>
-        <source main="main" file="aratt_ShowHide Midi Track.lua">https://github.com/slsenseless/aratt/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_ShowHide%20Midi%20Track.lua</source>
+        <source>https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_package.lua</source>
+        <source file="rtconfig.txt">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/rtconfig.txt</source>
+        <source file="aratt_core.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_core.lua</source>
+        <source file="aratt_template.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_template.lua</source>
+        <source main="main" file="aratt_Automatic Routing.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Automatic%20Routing.lua</source>
+        <source main="main" file="aratt_Create Audio Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Audio%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Audio Track.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Audio%20Track.lua</source>
+        <source main="main" file="aratt_Create Audio and Midi Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Audio%20and%20Midi%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Audio and Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Audio%20and%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Create Folder Track.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Folder%20Track.lua</source>
+        <source main="main" file="aratt_Create Midi Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Midi%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Create Vsti Track.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Create%20Vsti%20Track.lua</source>
+        <source main="main" file="aratt_Transform to Audio.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Transform%20to%20Audio.lua</source>
+        <source main="main" file="aratt_Transform to Default.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Transform%20to%20Default.lua</source>
+        <source main="main" file="aratt_Transform to Folder.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Transform%20to%20Folder.lua</source>
+        <source main="main" file="aratt_Transform to Midi.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Transform%20to%20Midi.lua</source>
+        <source main="main" file="aratt_Transform to Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_Transform%20to%20Vsti.lua</source>
+        <source main="main" file="aratt_ShowHide Audio Track.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_ShowHide%20Audio%20Track.lua</source>
+        <source main="main" file="aratt_ShowHide Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/782e6939ed64c57217f7af2cea7e78721a88e8ce/aratt/aratt_ShowHide%20Midi%20Track.lua</source>
       </version>
       <version name="1.1" author="slsenseless" time="2020-03-19T14:20:30Z">
-        <source>https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_package.lua</source>
-        <source file="rtconfig.txt">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/rtconfig.txt</source>
-        <source file="aratt_core.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_core.lua</source>
-        <source file="aratt_template.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_template.lua</source>
-        <source main="main" file="aratt_Automatic Routing static.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Automatic%20Routing%20static.lua</source>
-        <source main="main" file="aratt_Automatic Routing.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Automatic%20Routing.lua</source>
-        <source main="main" file="aratt_Create Audio Track for Vsti.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Audio%20Track%20for%20Vsti.lua</source>
-        <source main="main" file="aratt_Create Audio Track.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Audio%20Track.lua</source>
-        <source main="main" file="aratt_Create Audio and Midi Track for Vsti.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Audio%20and%20Midi%20Track%20for%20Vsti.lua</source>
-        <source main="main" file="aratt_Create Audio and Midi Track.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Audio%20and%20Midi%20Track.lua</source>
-        <source main="main" file="aratt_Create Folder Track.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Folder%20Track.lua</source>
-        <source main="main" file="aratt_Create Midi Track for Vsti.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Midi%20Track%20for%20Vsti.lua</source>
-        <source main="main" file="aratt_Create Midi Track.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Midi%20Track.lua</source>
-        <source main="main" file="aratt_Create Vsti Track.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Vsti%20Track.lua</source>
-        <source main="main" file="aratt_Transform to Audio.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Transform%20to%20Audio.lua</source>
-        <source main="main" file="aratt_Transform to Default.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Transform%20to%20Default.lua</source>
-        <source main="main" file="aratt_Transform to Folder.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Transform%20to%20Folder.lua</source>
-        <source main="main" file="aratt_Transform to Midi.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Transform%20to%20Midi.lua</source>
-        <source main="main" file="aratt_Transform to Vsti.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Transform%20to%20Vsti.lua</source>
-        <source main="main" file="aratt_ShowHide Audio Track.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_ShowHide%20Audio%20Track.lua</source>
-        <source main="main" file="aratt_ShowHide Midi Track.lua">https://github.com/slsenseless/aratt/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_ShowHide%20Midi%20Track.lua</source>
+        <source>https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_package.lua</source>
+        <source file="rtconfig.txt">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/rtconfig.txt</source>
+        <source file="aratt_core.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_core.lua</source>
+        <source file="aratt_template.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_template.lua</source>
+        <source main="main" file="aratt_Automatic Routing static.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Automatic%20Routing%20static.lua</source>
+        <source main="main" file="aratt_Automatic Routing.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Automatic%20Routing.lua</source>
+        <source main="main" file="aratt_Create Audio Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Audio%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Audio Track.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Audio%20Track.lua</source>
+        <source main="main" file="aratt_Create Audio and Midi Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Audio%20and%20Midi%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Audio and Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Audio%20and%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Create Folder Track.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Folder%20Track.lua</source>
+        <source main="main" file="aratt_Create Midi Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Midi%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Create Vsti Track.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Create%20Vsti%20Track.lua</source>
+        <source main="main" file="aratt_Transform to Audio.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Transform%20to%20Audio.lua</source>
+        <source main="main" file="aratt_Transform to Default.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Transform%20to%20Default.lua</source>
+        <source main="main" file="aratt_Transform to Folder.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Transform%20to%20Folder.lua</source>
+        <source main="main" file="aratt_Transform to Midi.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Transform%20to%20Midi.lua</source>
+        <source main="main" file="aratt_Transform to Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_Transform%20to%20Vsti.lua</source>
+        <source main="main" file="aratt_ShowHide Audio Track.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_ShowHide%20Audio%20Track.lua</source>
+        <source main="main" file="aratt_ShowHide Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/627b6a1a06d33c74128ca379e05c75f988c9065f/aratt/aratt_ShowHide%20Midi%20Track.lua</source>
       </version>
       <version name="1.2" author="slsenseless" time="2020-04-01T10:38:56Z">
-        <source>https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_package.lua</source>
-        <source file="rtconfig.txt">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/rtconfig.txt</source>
-        <source file="aratt_core.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_core.lua</source>
-        <source file="aratt_template.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_template.lua</source>
-        <source main="main" file="aratt_Automatic Routing static.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Automatic%20Routing%20static.lua</source>
-        <source main="main" file="aratt_Automatic Routing.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Automatic%20Routing.lua</source>
-        <source main="main" file="aratt_Create Audio Track for Vsti.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Audio%20Track%20for%20Vsti.lua</source>
-        <source main="main" file="aratt_Create Audio Track.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Audio%20Track.lua</source>
-        <source main="main" file="aratt_Create Audio and Midi Track for Vsti.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Audio%20and%20Midi%20Track%20for%20Vsti.lua</source>
-        <source main="main" file="aratt_Create Audio and Midi Track.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Audio%20and%20Midi%20Track.lua</source>
-        <source main="main" file="aratt_Create Folder Track.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Folder%20Track.lua</source>
-        <source main="main" file="aratt_Create Midi Track for Vsti.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Midi%20Track%20for%20Vsti.lua</source>
-        <source main="main" file="aratt_Create Midi Track.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Midi%20Track.lua</source>
-        <source main="main" file="aratt_Create Vsti Track.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Vsti%20Track.lua</source>
-        <source main="main" file="aratt_Transform to Audio.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Transform%20to%20Audio.lua</source>
-        <source main="main" file="aratt_Transform to Default.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Transform%20to%20Default.lua</source>
-        <source main="main" file="aratt_Transform to Folder.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Transform%20to%20Folder.lua</source>
-        <source main="main" file="aratt_Transform to Midi.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Transform%20to%20Midi.lua</source>
-        <source main="main" file="aratt_Transform to Vsti.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Transform%20to%20Vsti.lua</source>
-        <source main="main" file="aratt_ShowHide Audio Track.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_ShowHide%20Audio%20Track.lua</source>
-        <source main="main" file="aratt_ShowHide Midi Track.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_ShowHide%20Midi%20Track.lua</source>
-        <source main="main" file="aratt_Remove Suffix.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Remove%20Suffix.lua</source>
-        <source main="main" file="aratt_Assisted Routing.lua">https://github.com/slsenseless/aratt/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Assisted%20Routing.lua</source>
+        <source>https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_package.lua</source>
+        <source file="rtconfig.txt">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/rtconfig.txt</source>
+        <source file="aratt_core.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_core.lua</source>
+        <source file="aratt_template.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_template.lua</source>
+        <source main="main" file="aratt_Automatic Routing static.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Automatic%20Routing%20static.lua</source>
+        <source main="main" file="aratt_Automatic Routing.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Automatic%20Routing.lua</source>
+        <source main="main" file="aratt_Create Audio Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Audio%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Audio Track.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Audio%20Track.lua</source>
+        <source main="main" file="aratt_Create Audio and Midi Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Audio%20and%20Midi%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Audio and Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Audio%20and%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Create Folder Track.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Folder%20Track.lua</source>
+        <source main="main" file="aratt_Create Midi Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Midi%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Create Vsti Track.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Create%20Vsti%20Track.lua</source>
+        <source main="main" file="aratt_Transform to Audio.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Transform%20to%20Audio.lua</source>
+        <source main="main" file="aratt_Transform to Default.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Transform%20to%20Default.lua</source>
+        <source main="main" file="aratt_Transform to Folder.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Transform%20to%20Folder.lua</source>
+        <source main="main" file="aratt_Transform to Midi.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Transform%20to%20Midi.lua</source>
+        <source main="main" file="aratt_Transform to Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Transform%20to%20Vsti.lua</source>
+        <source main="main" file="aratt_ShowHide Audio Track.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_ShowHide%20Audio%20Track.lua</source>
+        <source main="main" file="aratt_ShowHide Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_ShowHide%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Remove Suffix.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Remove%20Suffix.lua</source>
+        <source main="main" file="aratt_Assisted Routing.lua">https://github.com/slsenseless/ReaScripts/raw/6685abe10b3e36434ef8d375ad1653dfa7aa6c7f/aratt/aratt_Assisted%20Routing.lua</source>
+      </version>
+      <version name="1.3" author="slsenseless" time="2020-04-06T12:06:07Z">
+        <changelog><![CDATA[# Version 1.3
+	- Add "aratt_midi_Show FX of Midi" midi script
+	- Add "aratt_midi_Show input FX of Midi" midi script
+	- Add "aratt_midi_Show FX of Audio" midi script
+	- Add "aratt_midi_Show FX of Vsti" midi script
+	- Add "aratt_Show FX of receives" script
+	- Add "aratt_Show FX of sends" script
+	- Add "aratt_Show input FX of sends" script
+	- Add aratt_toolbar reaper menu
+# Version 1.2
+	- Add fx parameter (types can now be loaded with FXs)
+	- Add template parameter (types can now be a track template)
+	- Add midi input parameter
+	- Add height parameter
+	- Add "Remove Suffix" script
+	- Add "Assisted routing" script
+	- Improve folder tcp layout
+	- Fix show/hide track state when creating/transforming tracks (audio and midi)
+	- Various small fix
+	- Code refactoring
+# Version 1.1
+	- Implement icons
+	- New auto routing script aratt_Automatic Routing static.lua with static routing enable
+	- Increase height of tracks (midi,audio,vsti and folder) in TCP
+	- Add return code to AutomaticRouting function
+# Version 1.0
+	- Add track types
+		- Audio Out
+		- VSTi
+		- Folder
+		- MIDI
+	- Add automatic routing
+	- Add scripts to create, transform and route tracks
+	- Add script to show/hide audio in TCP
+	- Add script to show/hide midi in MCP]]></changelog>
+        <source file="rtconfig.txt">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/rtconfig.txt</source>
+        <source file="aratt_toolbar_1.ReaperMenu">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_toolbar_1.ReaperMenu</source>
+        <source file="aratt_toolbar_2.ReaperMenu">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_toolbar_2.ReaperMenu</source>
+        <source>https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_package.lua</source>
+        <source file="aratt_core.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_core.lua</source>
+        <source file="aratt_template.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_template.lua</source>
+        <source main="main" file="aratt_Automatic Routing static.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Automatic%20Routing%20static.lua</source>
+        <source main="main" file="aratt_Automatic Routing.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Automatic%20Routing.lua</source>
+        <source main="main" file="aratt_Create Audio Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Create%20Audio%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Audio Track.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Create%20Audio%20Track.lua</source>
+        <source main="main" file="aratt_Create Audio and Midi Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Create%20Audio%20and%20Midi%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Audio and Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Create%20Audio%20and%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Create Folder Track.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Create%20Folder%20Track.lua</source>
+        <source main="main" file="aratt_Create Midi Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Create%20Midi%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Create%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Create Vsti Track.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Create%20Vsti%20Track.lua</source>
+        <source main="main" file="aratt_Transform to Audio.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Transform%20to%20Audio.lua</source>
+        <source main="main" file="aratt_Transform to Default.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Transform%20to%20Default.lua</source>
+        <source main="main" file="aratt_Transform to Folder.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Transform%20to%20Folder.lua</source>
+        <source main="main" file="aratt_Transform to Midi.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Transform%20to%20Midi.lua</source>
+        <source main="main" file="aratt_Transform to Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Transform%20to%20Vsti.lua</source>
+        <source main="main midi_editor midi_inlineeditor" file="aratt_Show FX of receives.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Show%20FX%20of%20receives.lua</source>
+        <source main="main midi_editor midi_inlineeditor" file="aratt_Show FX of sends.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Show%20FX%20of%20sends.lua</source>
+        <source main="main midi_editor midi_inlineeditor" file="aratt_Show input FX of receives.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Show%20input%20FX%20of%20receives.lua</source>
+        <source main="main midi_editor midi_inlineeditor" file="aratt_ShowHide Audio Track.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_ShowHide%20Audio%20Track.lua</source>
+        <source main="main midi_editor midi_inlineeditor" file="aratt_ShowHide Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_ShowHide%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Remove Suffix.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Remove%20Suffix.lua</source>
+        <source main="main" file="aratt_Assisted Routing.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_Assisted%20Routing.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show FX of Audio.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_midi_Show%20FX%20of%20Audio.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show FX of Midi.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_midi_Show%20FX%20of%20Midi.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show FX of Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_midi_Show%20FX%20of%20Vsti.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show input FX of Midi.lua">https://github.com/slsenseless/ReaScripts/raw/f2eb9fde45cfef2f958b76fcebd3a353b6807627/aratt/aratt_midi_Show%20input%20FX%20of%20Midi.lua</source>
       </version>
     </reapack>
   </category>
+  <metadata>
+    <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 Lua scripts repo for {\field{\*\fldinst{HYPERLINK "https://www.reaper.fm/"}}{\fldrslt{\ul
+REAPER
+}}}
+\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 You can add this repo to {\field{\*\fldinst{HYPERLINK "https://reapack.com/"}}{\fldrslt{\ul
+ReaPack
+}}}
+ with the following link: https://raw.githubusercontent.com/slsenseless/ReaScripts/master/index.xml\par}
+}
+]]></description>
+  </metadata>
 </index>
