@@ -18,14 +18,7 @@ end
 reaper.PreventUIRefresh(1)
 reaper.Undo_BeginBlock()
 
-local numTracks = reaper.CountSelectedTracks(0)
-local i = 0
-local tracks = {}
-for i=0,numTracks - 1 do
-	table.insert(tracks, reaper.GetSelectedTrack( 0, i ))
-end
+aratt.CreateFxTrack()
 
-aratt.AutomaticRouting(tracks,true)
-
-reaper.Undo_EndBlock("Automatic routing done", 1)
+reaper.Undo_EndBlock("Fx Track created", 1)
 reaper.PreventUIRefresh(-1)

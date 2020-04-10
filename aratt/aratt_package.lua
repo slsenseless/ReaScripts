@@ -6,7 +6,7 @@
 @license
 	GNU GPLv3
 @version
-	1.3
+	1.4
 @links
 	GitHub (Source code) https://github.com/slsenseless/ReaScripts
 @metapackage
@@ -25,6 +25,12 @@
 	[main=main] aratt_Assisted*.lua
 	[main=midi_editor,midi_inlineeditor] aratt_midi_*.lua
 @changelog
+	# Version 1.4
+		- Add Fx type ("aratt_Create Fx Track.lua" / "aratt_Transform to Fx.lua")
+		- Change envelope knob (longer one)
+		- Fix midi show Fx (midi/audio/vsti)
+		- Remove static routing
+		- Refractoring of routing process
 	# Version 1.3
 		- Add "aratt_midi_Show FX of Midi" midi script
 		- Add "aratt_midi_Show input FX of Midi" midi script

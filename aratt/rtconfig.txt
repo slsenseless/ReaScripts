@@ -566,6 +566,45 @@ Layout "Audio"
 EndLayout
 
 ; ARATT Layout
+Layout "Fx"
+
+	set scale 1
+	calcTcpSecs
+	resetHides
+	doHideLogic 	tcp.recarm 		5
+	doHideLogic 	tcp.recmon 		6
+	doHideLogic 	tcp.label 		7
+	doHideLogic 	tcp.volume 		8
+	;doHideLogic 	tcp.io 			9 ; I like to keep routing anyway
+	doHideLogic 	fx_group 		10
+	doHideLogic 	tcp.env 		11
+	;doHideLogic 	pan_group 		12 ; I like to keep pan anyway
+	doHideLogic 	tcp.recmode 	13
+	doHideLogic 	input_group 	14
+	doHideLogic 	values 			15
+	doHideLogic 	meter_values	16*
+	
+	; HIDING REC
+	set hide_tcp.recarm  			1
+	set hide_tcp.recmon  			1
+
+	;    element        	size  	padding?
+	then tcp.recarm 		20 			0
+	then tcp.recmon 		15 			0
+	then tcp.label 	   tcp_LabelSize 	0
+	then tcp.volume			100			0
+	then tcp.io 			34 			1
+	then fx_group 			36 			1
+	then tcp.env 			41 			1
+	then pan_group		tcp_PanSize		1
+	then tcp.recmode 		39 			1
+	then input_group 	tcp_InSize 		1
+	set tcp.label  .
+	drawTcp scale
+
+EndLayout
+
+; ARATT Layout
 Layout "VSTi"
 
 	set scale 1
@@ -945,7 +984,8 @@ drawMasterTcp 1
 #> -------------------------- ENVELOPE CONTROL PANELS ---------------------------------
 
 paramPair 	EnvcpLabelSize 					21 0 20 50 80 110 140 170
-paramPair 	EnvcpVolSize 					23 20 40 70 100 130 160 190
+;paramPair 	EnvcpVolSize 					23 20 40 70 100 130 160 190
+paramPair 	EnvcpVolSize 					100 100 100 100 100 130 160 190
 set EnvLabelAutoMeasured 					param22
 set EnvFolderIndent							param24
 
@@ -1292,6 +1332,14 @@ EndLayout
 
 ; ARATT layout
 Layout "Audio"
+	set hide_record					[1]
+	set mcp.label  .
+	drawMcp 1
+	set hide_record					[0]
+EndLayout
+
+; ARATT layout
+Layout "Fx"
 	set hide_record					[1]
 	set mcp.label  .
 	drawMcp 1

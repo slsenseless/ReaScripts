@@ -1,5 +1,4 @@
 -- @noindex
-local midiInAudioTrack = true
 local random_color = true
 
 -- Optional if aratt_core is in reaper lua folder
@@ -22,12 +21,8 @@ reaper.PreventUIRefresh(1)
 reaper.Undo_BeginBlock()
 
 local pos = aratt.GetInsertionPoint()
-local midiTrackDepth = 0
-local audioTrackDepth = 0
-if midiInAudioTrack then
-	midiTrackDepth = -1
-	audioTrackDepth = 1
-end
+midiTrackDepth = -1
+audioTrackDepth = 1
 
 local midiTrack = aratt.CreateMidiTrack(pos)
 local audioTrack = aratt.CreateAudioTrack(pos)

@@ -24,7 +24,7 @@ local show = nil
 
 for i=0,numTracks - 1 do
 	local track = reaper.GetTrack( 0, i )
-	if aratt.isAudioTrack(track) then
+	if aratt.isAudioTrack(track) or aratt.isFxTrack(track) then
 		if show == nil then
 			if reaper.GetMediaTrackInfo_Value( track, "B_SHOWINTCP" ) == 0 then
 				show = true

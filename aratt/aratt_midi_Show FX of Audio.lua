@@ -18,7 +18,7 @@ for key,track in pairs(parents) do
 	reaper.SetTrackSelected( track, true )
 end
 
-reaper.Main_OnCommand( reaper.NamedCommandLookup( "_S&M_TOGLFXCHAIN" ), 0 ) -- Toggle show fx chain window for selected tracks
+reaper.Main_OnCommand( reaper.NamedCommandLookup( "_S&M_SHOWFXCHAINSEL" ), 0 ) -- Show fx chain window for selected tracks
 
 reaper.Undo_EndBlock("Show FX of Audio", 1)
 reaper.PreventUIRefresh(-1)

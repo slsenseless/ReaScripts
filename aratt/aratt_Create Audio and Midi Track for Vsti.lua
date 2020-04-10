@@ -1,5 +1,4 @@
 -- @noindex
-local midiInAudioTrack = true
 local random_color = true
 local vsti_name = true -- false : Default name (aratt.audioName) ; true : Vsti name
 local input_name = true -- Show dialogue box to enter names (if vsti_name true, default name will be vsti name)
@@ -35,12 +34,8 @@ if not aratt.isVstiTrack(vstiTrack) then
 end
 
 local pos = aratt.GetInsertionPoint()
-local midiTrackDepth = 0
-local audioTrackDepth = 0
-if midiInAudioTrack then
-	midiTrackDepth = -1
-	audioTrackDepth = 1
-end
+midiTrackDepth = -1
+audioTrackDepth = 1
 
 local track_name = nil
 if vsti_name then

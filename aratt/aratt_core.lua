@@ -29,6 +29,17 @@ aratt.audio = {
 	height = 60 -- 0 for default
 }
 
+aratt.fx = {
+	id = "fx", -- Don't change this
+	name = "Fx",
+	panelLayout = "Fx",
+	mixerLayout = "Fx", -- Put "" for default layout
+	icon = "fx.png", -- Put "" for none
+	fx = {},
+	template = "",
+	height = 60 -- 0 for default
+}
+
 aratt.folder = {
 	id = "folder", -- Don't change this
 	name = "",
@@ -60,15 +71,13 @@ aratt.suffixOnAudio = true -- Put Channel at the end of audio name
 
 -- Show/Hide types in mixer/panel
 aratt.showMidiMixer = false
-aratt.showAudioPanel = true
+aratt.showAudioPanel = true -- Also for fx tracks
 
 -- Midi configuration
 aratt.useBus = false -- True: all 16 buses will be used, False: default bus (0) will be used
 aratt.maxNumberBus = 16 -- Number of buses used (if useBus true), maximum is 16
 aratt.midiSendChan = 0 -- Midi channel send from Midi track to Vsti (0: All, 1-16: Channel 1-16)
 aratt.midiSendBus = 0 -- Midi bus send from Midi track to Vsti (0: All, 1-16: Bus 1-16)
-aratt.midiReceiveChan = 0 -- Midi channel used if automatic routing is static
-aratt.midiReceiveBus = 0 -- Midi bus used if automatic routing is static
 
 aratt.midiInput = true -- If false, default taken, otherwise midiInputChannel and midiInputDevice taken as record input
 if aratt.midiInput then
@@ -79,13 +88,10 @@ end
 -- Audio configuration
 aratt.maxAudioChan = 64
 aratt.audioReceive = 0 -- Audio channel on audio track (0: Stereo 1/2, 2: Stereo 3/4...) Do NOT put it above maxAudioChan-2
-aratt.audioSend = 0 -- Audio channel used if automatic routing is static
+aratt.audioSend = 0 -- Default audio send for fx tracks
 
 -- Vsti configuration
 aratt.vstiSendParent = 0 -- 0 don't send to parent, 1 send
-
--- Other configuration
-aratt.staticOnOtherOnly = false -- If true, static routing only applied for non vsti track
 
 -------------------------------------
 -- Get point of tracks insertions
@@ -169,6 +175,7 @@ function aratt.changeIcon(track, iconName)
 		(currentIcon == aratt.midi.icon and aratt.isMidiTrack(track)) or
 		(currentIcon == aratt.audio.icon and aratt.isAudioTrack(track)) or
 		(currentIcon == aratt.folder.icon and aratt.isFolderTrack(track)) or
+		(currentIcon == aratt.fx.icon and aratt.isFxTrack(track)) or
 		(currentIcon == aratt.vsti.icon and aratt.isVstiTrack(track))
 	then
 		return true
@@ -208,6 +215,37 @@ function aratt.TransformToAudio(track)
 end
 
 -------------------------------------
+-- Transform a track to fx track
+-- @param MediaTrack track to transform
+-- @return MediaTrack track transformed
+-------------------------------------
+function aratt.TransformToFx(track)
+	local retval, retName = reaper.GetSetMediaTrackInfo_String( track, "P_NAME", "", false )
+	if retName == nil or retName == "" then
+		reaper.GetSetMediaTrackInfo_String(track, "P_NAME", aratt.fx.name, true)
+	end
+	
+	if aratt.changeIcon(track,aratt.fx.icon) then
+		reaper.GetSetMediaTrackInfo_String( track, "P_ICON", aratt.fx.icon, true )
+	end
+	
+	reaper.SetMediaTrackInfo_Value(track, "B_SHOWINTCP", aratt.stateAudioShow())
+	reaper.SetMediaTrackInfo_Value(track, "B_SHOWINMIXER", 1)
+	reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", aratt.fx.panelLayout, true ) -- Apply fx out layout on panel
+	reaper.GetSetMediaTrackInfo_String( track, "P_MCP_LAYOUT", aratt.fx.mixerLayout, true ) -- Apply fx out layout on mixer
+	local vol = reaper.GetMediaTrackInfo_Value( track, "D_VOL")
+	if vol == 0 then
+		reaper.SetMediaTrackInfo_Value(track, "D_VOL", 1)
+	end
+	if aratt.fx.height ~= 0 then
+		reaper.SetMediaTrackInfo_Value(track, "I_HEIGHTOVERRIDE", aratt.fx.height)
+	end
+	reaper.SetMediaTrackInfo_Value(track, "I_RECARM", 0)
+	reaper.SetMediaTrackInfo_Value(track, "B_MAINSEND", 1)
+	return track
+end
+
+-------------------------------------
 -- Create an Audio track
 -- @param number (optional) pos Position of the track
 -- @param number (optional) depth Depth of the track
@@ -216,6 +254,17 @@ end
 -------------------------------------
 function aratt.CreateAudioTrack(pos, depth, name)
 	return aratt.TrackFactory(aratt.audio,pos,depth,name)
+end
+
+-------------------------------------
+-- Create an Fx track
+-- @param number (optional) pos Position of the track
+-- @param number (optional) depth Depth of the track
+-- @param string (optional) name Name of the track
+-- @return MediaTrack Created fx track
+-------------------------------------
+function aratt.CreateFxTrack(pos, depth, name)
+	return aratt.TrackFactory(aratt.fx,pos,depth,name)
 end
 
 -------------------------------------
@@ -376,7 +425,7 @@ end
 
 -------------------------------------
 -- Create a track based on its type
--- @param {aratt.vsti|aratt.audio|aratt.midi|aratt.folder} trackType Type of track
+-- @param {aratt.vsti|aratt.audio|aratt.fx|aratt.midi|aratt.folder} trackType Type of track
 -- @param number (optional) pos Position of the track
 -- @param number (optional) depth Depth of the track
 -- @param string (optional) name Name of the track
@@ -404,6 +453,7 @@ function aratt.TrackFactory(trackType, pos, depth, name)
 	if trackType.id == aratt.midi.id then track = aratt.TransformToMidi(track)
 	elseif trackType.id == aratt.vsti.id then track = aratt.TransformToVsti(track)
 	elseif trackType.id == aratt.audio.id then track = aratt.TransformToAudio(track)
+	elseif trackType.id == aratt.fx.id then track = aratt.TransformToFx(track)
 	elseif trackType.id == aratt.folder.id then track = aratt.TransformToFolder(track)
 	end
 	
@@ -445,6 +495,15 @@ end
 
 -------------------------------------
 -- @param MediaTrack track Track to check
+-- @return boolean true if track is a fx, false otherwise
+-------------------------------------
+function aratt.isFxTrack(track)
+	local retval, retLayout = reaper.GetSetMediaTrackInfo_String( track, "P_TCP_LAYOUT", "", false)
+	return retLayout == aratt.fx.panelLayout
+end
+
+-------------------------------------
+-- @param MediaTrack track Track to check
 -- @return boolean true if track is a vsti, false otherwise
 -------------------------------------
 function aratt.isVstiTrack(track)
@@ -471,7 +530,7 @@ function aratt.stateAudioShow()
 
 	for i=0,numTracks - 1 do
 		local track = reaper.GetTrack( 0, i )
-		if aratt.isAudioTrack(track) then
+		if aratt.isAudioTrack(track) or aratt.isFxTrack(track) then
 			return reaper.GetMediaTrackInfo_Value( track, "B_SHOWINTCP" )
 		end
 	end
@@ -631,13 +690,12 @@ end
 -- Create midi send between 2 tracks
 -- @param MediaTrack trackSrc source
 -- @param MediaTrack trackDst destination
--- @param boolean (optional) staticReceive if true, midiReceiveChan/Bus will be used (false by default)
+-- @param number (optional) dstBus, number (optional) dstChan Destination bus/channel
 -- @return number,number,number : bus used, channel used, trackSend
 -------------------------------------
-function aratt.CreateMidiSend(trackSrc, trackDst, staticReceive)
+function aratt.CreateMidiSend(trackSrc, trackDst, dstBus, dstChan)
 	local trackSend = reaper.CreateTrackSend( trackSrc, trackDst )
-	local dstBus, dstChan = aratt.midiReceiveBus, aratt.midiReceiveChan
-	if staticReceive == nil or not staticReceive then
+	if dstBus == nil or dstChan == nil then
 		dstBus,dstChan = aratt.GetUnusedMidi(trackDst)
 	end
 	reaper.BR_GetSetTrackSendInfo( trackSrc, 0, trackSend, "I_SRCCHAN", true, -1)
@@ -662,13 +720,13 @@ end
 -- Create audio send between 2 tracks
 -- @param MediaTrack trackSrc source
 -- @param MediaTrack trackDst destination
--- @param boolean (optional) staticSend if true, audioSend will be used (false by default)
--- @param number midiBus, number midiChan (optional) if set, audio channel will correspond to midi bus/channel
+-- @param number (optional) audioChan Audio channel used (0 for 1/2), if nil, next parameter taken
+-- @param number (optional) midiBus, number (optional) midiChan Replace audioChan, audio channel will correspond to midi bus/channel
+-- Note : if none are provided, next available audio will be taken
 -- @return number,number : channel used, trackSend
 -------------------------------------
-function aratt.CreateAudioSend(trackSrc, trackDst, staticSend, midiBus, midiChan)
-	local audioChan = aratt.audioSend
-	if staticSend == nil or not staticSend then
+function aratt.CreateAudioSend(trackSrc, trackDst, audioChan, midiBus, midiChan)
+	if audioChan == nil then
 		if midiBus == nil or midiChan == nil then
 			audioChan = aratt.GetUnusedAudio(trackSrc)
 		else
@@ -694,91 +752,177 @@ function aratt.CreateAudioSend(trackSrc, trackDst, staticSend, midiBus, midiChan
 end
 
 -------------------------------------
--- Return the "main track" (vsti or default) and "tracks to route" (to main track)
--- @param table{MediaTrack} tracks Tracks to separate between the main one and the others
--- @return MediaTrack (main track), table{MediaTrack} (tracks to route), number (0 : succeed, 1 : two main tracks selected, 2 : no main track selected)
+-- Return all tracks in their respective table
+-- @param table{MediaTrack} tracks Tracks to separate
+-- @return table{MediaTrack} vsti tracks, table{MediaTrack} other tracks, table{MediaTrack} audio tracks, table{MediaTrack} fx tracks, table{MediaTrack} midi tracks, table{MediaTrack} folder tracks
 -------------------------------------
-function aratt.GetMainAndTracksToRoute(tracks)
-	local mainTrack = nil
-	local tracksToRoute = {}
+function aratt.SplitTracksType(tracks)
+	local vstiTracks = {}
+	local otherTracks = {}
+	local audioTracks = {}
+	local fxTracks = {}
+	local midiTracks = {}
+	local folderTracks = {}
 	
-	local i = 1
 	for i = 1,#tracks do
 		local track = tracks[i]
-		if not aratt.isMidiTrack(track) and not aratt.isAudioTrack(track) and not aratt.isFolderTrack(track) then
-			if mainTrack == nil then
-				mainTrack = track
-			else
-				reaper.ShowMessageBox( "Please select only one main track (vsti or default)", "Cant route", 0 )
-				return nil,nil, 1
-			end	
-		elseif aratt.isMidiTrack(track) or aratt.isAudioTrack(track) then
-			table.insert(tracksToRoute,track)
+		if(aratt.isVstiTrack(track)) then table.insert(vstiTracks,track)
+		elseif(aratt.isAudioTrack(track)) then table.insert(audioTracks,track)
+		elseif(aratt.isFxTrack(track)) then table.insert(fxTracks,track)
+		elseif(aratt.isMidiTrack(track)) then table.insert(midiTracks,track)
+		elseif(aratt.isFolderTrack(track)) then table.insert(folderTracks,track)
+		else table.insert(otherTracks,track)
 		end
 	end
 	
-	if mainTrack == nil then
-		reaper.ShowMessageBox( "No main track selected (vsti or default)", "Cant route", 0 )
-		return nil,nil, 2
-	end
-	
-	return mainTrack,tracksToRoute,0
+	return vstiTracks,otherTracks,audioTracks,fxTracks,midiTracks,folderTracks
 end
 
+-------------------------------------
+-- Return merged table
+-- @param table{table{}} tables Tables to merge
+-- @return table{} Merged table
+-------------------------------------
+function aratt.MergeTables(tables)
+	local mergedTable = {}
+	local j = 0
+	for i = 1,#tables do
+		local currentTable = tables[i]
+		for k,v in pairs(currentTable) do j=j+1; mergedTable[j] = v end
+	end
+	return mergedTable
+end
+
+-------------------------------------
+-- Return the "main track" (vsti or default) and error code
+-- @param table{MediaTrack} vstiTracks Vsti track
+-- @param table{MediaTrack} otherTracks Other track
+-- @return MediaTrack (optional) Main track, number (0 : succeed, 1 : two main tracks selected, 2 : no main track selected)
+-------------------------------------
+function aratt.GetMainTrack(vstiTracks, otherTracks)
+	local mainTrack = nil
+	if #vstiTracks + #otherTracks == 0 then
+		reaper.ShowMessageBox( "No main track selected (vsti or default)", "Cant route", 0 )
+		return nil,2
+	elseif #vstiTracks + #otherTracks > 1 then
+		reaper.ShowMessageBox( "Please select only one main track (vsti or default)", "Cant route", 0 )
+		return nil,1
+	elseif #vstiTracks == 1 then
+		mainTrack = vstiTracks[1]
+	else
+		mainTrack = otherTracks[1]
+	end
+	return mainTrack, 0
+end
+
+-------------------------------------
+-- Return indexes of send which goes to audio types
+-- @param MediaTrack track Track to get indexes
+-- @return table{number} Indexes
+-------------------------------------
+function aratt.GetAudioIndexes(track)
+	local removed = false
+	local retValues = {}
+	for j=0,reaper.GetTrackNumSends( track, 0 ) - 1 do
+		if aratt.isAudioTrack(reaper.BR_GetMediaTrackSendInfo_Track(track,0,j,1)) then
+			table.insert(retValues, reaper.GetTrackSendInfo_Value( track, 0, j, "I_SRCCHAN" ))
+		end
+	end
+	return retValues
+end
+
+-------------------------------------
+-- Remove duplicate send of a track. Is considered "duplicate" sends that have the same channel (src/dst) and track destination
+-- @param MediaTrack track Track to proceed
+-- @return number Number of removed sends
+-------------------------------------
+function aratt.RemoveDuplicateSend(track)
+	local toBeRemoved = {}
+	local numSend = reaper.GetTrackNumSends( track, 0 )
+	local i = 0
+	while i < numSend do
+		local dstChan = reaper.GetTrackSendInfo_Value( track, 0, i, "I_DSTCHAN" )
+		local srcChan = reaper.GetTrackSendInfo_Value( track, 0, i, "I_SRCCHAN" )
+		local dstTrack = reaper.BR_GetMediaTrackSendInfo_Track(track,0,i,1)
+		local trackIdx = reaper.GetMediaTrackInfo_Value( dstTrack, "IP_TRACKNUMBER" )
+		local j = i + 1
+		while j < numSend do
+			local dstChan2 = reaper.GetTrackSendInfo_Value( track, 0, j, "I_DSTCHAN" )
+			local srcChan2 = reaper.GetTrackSendInfo_Value( track, 0, j, "I_SRCCHAN" )
+			local dstTrack2 = reaper.BR_GetMediaTrackSendInfo_Track(track,0,j,1)
+			local trackIdx2 = reaper.GetMediaTrackInfo_Value( dstTrack2, "IP_TRACKNUMBER" )
+			if dstChan == dstChan2 and srcChan == srcChan2 and trackIdx == trackIdx2 then
+				reaper.RemoveTrackSend( track, 0, j )
+				numSend = numSend - 1
+			end
+			j = j + 1
+		end
+		i = i + 1
+	end
+end
 
 -------------------------------------
 -- Automatically routes tracks
 -- @param table{MediaTrack} tracks Tracks to route
--- @param boolean (optional) staticRouting If true midiReceiveBus, midiReceiveChan, audioSend will be used, otherwise first available will be taken (default false) (work only on default track when aratt.staticOnOtherOnly is true)
 -- @return number 0 : succeed, 1 : two main tracks selected, 2 : no main track selected, 3 : nothing to route
 -------------------------------------
-function aratt.AutomaticRouting(tracks, staticRouting)
-	if staticRouting == nil then
-		staticRouting = false
+function aratt.AutomaticRouting(tracks)
+	
+	local vstiTracks = {}
+	local otherTracks = {}
+	local audioTracks = {}
+	local fxTracks = {}
+	local midiTracks = {}
+	local folderTracks = {}
+	
+	vstiTracks,otherTracks,audioTracks,fxTracks,midiTracks,folderTracks = aratt.SplitTracksType(tracks)
+	
+	-- Fx track routing
+	if #fxTracks > 0 then
+		aratt.suffixOnAudio = false
+		for fxKey,fxTrack in pairs(fxTracks) do
+			for key,track in pairs(aratt.MergeTables({vstiTracks,otherTracks})) do
+				local audioIndexes = aratt.GetAudioIndexes(track)
+				if #audioIndexes == 0 then
+					aratt.CreateAudioSend(track, fxTrack, aratt.audioSend)
+				else
+					for k,idx in pairs(audioIndexes) do
+						aratt.CreateAudioSend(track, fxTrack, idx)
+					end
+				end
+				aratt.RemoveDuplicateSend(track)
+			end
+			for key,track in pairs(audioTracks) do
+				aratt.CreateAudioSend(track, fxTrack, aratt.audioSend)
+				aratt.RemoveDuplicateSend(track)
+			end
+		end
+		return 0
 	end
 	
-	local mainTrack = nil
-	local tracksToRoute = {}
-	local midiTracks = {}
-	local audioTracks = {}
-	
-	mainTrack, tracksToRoute, retVal = aratt.GetMainAndTracksToRoute(tracks)
+	-- Get main track (vsti or default)
+	local mainTrack,retVal = aratt.GetMainTrack(vstiTracks, otherTracks)
 	
 	if retVal > 0 then
 		return retVal
 	end
 	
-	if aratt.isVstiTrack(mainTrack) and aratt.staticOnOtherOnly then
-		staticRouting = false
-	end
-	
-	-- Separate midi and audio tracks
-	local i = 1
-	for i = 1,#tracksToRoute do
-		local track = tracksToRoute[i]
-		if aratt.isMidiTrack(track) then
-			table.insert(midiTracks, track)
-		elseif aratt.isAudioTrack(track) then
-			table.insert(audioTracks, track)
-		end
-	end
-	
-	-- Do automatic routing
+	-- Do automatic routing on vsti or default track
 	local i = 0
 	if #midiTracks == #audioTracks then
 		for i=1,#midiTracks do
-			local dstBus, dstChan, trackSend = aratt.CreateMidiSend(midiTracks[i], mainTrack, staticRouting)
-			aratt.CreateAudioSend(mainTrack, audioTracks[i], staticRouting, dstBus, dstChan)
+			local dstBus, dstChan, trackSend = aratt.CreateMidiSend(midiTracks[i], mainTrack)
+			aratt.CreateAudioSend(mainTrack, audioTracks[i], nil, dstBus, dstChan)
 		end
 		
 	elseif #midiTracks > 0 and #audioTracks == 0 then
 		for i=1,#midiTracks do
-			aratt.CreateMidiSend(midiTracks[i], mainTrack, staticRouting )
+			aratt.CreateMidiSend(midiTracks[i], mainTrack )
 		end
 		
 	elseif #audioTracks > 0 and #midiTracks == 0 then
 		for i=1,#audioTracks do
-			aratt.CreateAudioSend(mainTrack, audioTracks[i], staticRouting )
+			aratt.CreateAudioSend(mainTrack, audioTracks[i] )
 		end
 		
 	else
@@ -801,10 +945,67 @@ function aratt.AssistedRouting(tracks, midiPriority)
 		midiPriority = true
 	end
 
-	local mainTrack = nil
-	local tracksToRoute = {}
+	local vstiTracks = {}
+	local otherTracks = {}
+	local audioTracks = {}
+	local fxTracks = {}
+	local midiTracks = {}
+	local folderTracks = {}
 	
-	mainTrack, tracksToRoute, retVal = aratt.GetMainAndTracksToRoute(tracks)
+	vstiTracks,otherTracks,audioTracks,fxTracks,midiTracks,folderTracks = aratt.SplitTracksType(tracks)
+	
+	-- Fx track routing
+	if #fxTracks > 0 then
+		aratt.suffixOnAudio = false
+		for fxKey,fxTrack in pairs(fxTracks) do
+			reaper.Main_OnCommand( 40297, 0 ) -- Unselect all track
+			reaper.SetTrackSelected( fxTrack, true )
+			for key,track in pairs(aratt.MergeTables({vstiTracks,otherTracks})) do
+				reaper.SetTrackSelected( track, true )
+				local audioIndexes = aratt.GetAudioIndexes(track,false)
+				if #audioIndexes == 0 then
+					table.insert(audioIndexes,0)
+				end
+				for k,retValue in pairs(audioIndexes) do
+					-- Getting input for vsti or other
+					local sendName = tostring(math.floor(retValue)+1).."/"..tostring(math.floor(retValue)+2)
+					local retval, retName = reaper.GetSetMediaTrackInfo_String( track, "P_NAME", "", false )
+					retval, retvals_csv = reaper.GetUserInputs( "Track "..retName, 1, "Send "..sendName.." to audio (start chan.)", 1 )
+					if not retval then
+						return -1
+					else
+						input = tonumber(retvals_csv)
+					end
+					aratt.audioReceive = input - 1
+					--
+					if input > 0 then
+						aratt.CreateAudioSend(track, fxTrack, retValue)
+					end
+				end
+				reaper.SetTrackSelected( track, false )
+			end
+			
+			for key,track in pairs(audioTracks) do
+				reaper.SetTrackSelected( track, true )
+				-- Getting input for audio
+				local retval, retName = reaper.GetSetMediaTrackInfo_String( track, "P_NAME", "", false )
+				retval, retvals_csv = reaper.GetUserInputs( "Track "..retName, 1, "Send to audio (start chan.) ", 1 )
+				if not retval then
+					return -1
+				else
+					input = retvals_csv
+				end
+				aratt.audioReceive = input - 1
+				--
+				aratt.CreateAudioSend(track, fxTrack, aratt.audioSend)
+				reaper.SetTrackSelected( track, false )
+			end
+		end
+		return 0
+	end
+	
+	-- Get main track (vsti or default)
+	local mainTrack,retVal = aratt.GetMainTrack(vstiTracks, otherTracks)
 	
 	if retVal > 0 then
 		return retVal
@@ -818,6 +1019,7 @@ function aratt.AssistedRouting(tracks, midiPriority)
 	local input = nil
 	local previousMidi = 0
 	local previousAudio = -1
+	local tracksToRoute = aratt.MergeTables({midiTracks,audioTracks})
 
 	while #tracksToRoute ~= 0 do
 
@@ -865,12 +1067,10 @@ function aratt.AssistedRouting(tracks, midiPriority)
 		-- Route track to main track
 		if isAudioTrack then
 			previousAudio = math.floor(input)
-			aratt.audioSend = input - 1
-			aratt.CreateAudioSend(mainTrack, track, true )
+			aratt.CreateAudioSend(mainTrack, track, input - 1 )
 		else
 			previousMidi = math.floor(input)
-			aratt.midiReceiveChan = input
-			aratt.CreateMidiSend(track, mainTrack, true )
+			aratt.CreateMidiSend(track, mainTrack, 0,input ) -- TODO bus
 		end
 		
 		previousIsAudioTrack = isAudioTrack
