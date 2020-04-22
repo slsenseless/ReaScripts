@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="SL ReaScripts" commit="f2b6a09b4355b211b4343288523d72d161f4f270">
+<index version="1" name="SL ReaScripts" commit="baa5b26054ce7b8152ace7a73c3b143da3e0b1b3">
   <category name="aratt">
     <reapack name="aratt_package.lua" type="script" desc="ARATT (Automatic Routing And Track Types)">
       <metadata>
@@ -7,10 +7,9 @@
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
-{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 ARATT\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs32 What is it ?\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 What is it ?\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 Aratt (Automatic Routing And Track Types) is a package for Reaper which adds track types via template and facilitated routing between tracks.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs32 How to install it ?\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 How to install it ?\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 You can download scripts via reapack. To complete the installation, you will need to customize the default theme :\par}
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Go to your reaper ressource path (Options -> Show REAPER resource path in explorer/finder) in the ColorThemes folder.\par}
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Make a copy of Default_6.0.ReaperThemeZip\par}
@@ -238,6 +237,125 @@
         <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show FX of Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/d4690e9b6396ebd8e5c2e03d8a64b744c35592a0/aratt/aratt_midi_Show%20FX%20of%20Vsti.lua</source>
         <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show input FX of Midi.lua">https://github.com/slsenseless/ReaScripts/raw/d4690e9b6396ebd8e5c2e03d8a64b744c35592a0/aratt/aratt_midi_Show%20input%20FX%20of%20Midi.lua</source>
       </version>
+      <version name="1.5" author="slsenseless" time="2020-04-22T13:25:30Z">
+        <changelog><![CDATA[# Version 1.5
+	- Rename "Show FX Audio" -> "Show FX of parent"
+	- Rename "Show FX of Midi" -> "Show FX of track"
+	- Rename "Show FX of Vsti" -> "Show FX of routed track"
+	- On rtconfig : Rec input and fx-in aren't hide anymore when mixer is here
+	- Update toolbar ReaperMenu
+# Version 1.4
+	- Add Fx type ("aratt_Create Fx Track.lua" / "aratt_Transform to Fx.lua")
+	- Change envelope knob (longer one)
+	- Fix midi show Fx (midi/audio/vsti)
+	- Remove static routing
+	- Refractoring of routing process
+# Version 1.3
+	- Add "aratt_midi_Show FX of Midi" midi script
+	- Add "aratt_midi_Show input FX of Midi" midi script
+	- Add "aratt_midi_Show FX of Audio" midi script
+	- Add "aratt_midi_Show FX of Vsti" midi script
+	- Add "aratt_Show FX of receives" script
+	- Add "aratt_Show FX of sends" script
+	- Add "aratt_Show input FX of sends" script
+	- Add aratt_toolbar reaper menu
+# Version 1.2
+	- Add fx parameter (types can now be loaded with FXs)
+	- Add template parameter (types can now be a track template)
+	- Add midi input parameter
+	- Add height parameter
+	- Add "Remove Suffix" script
+	- Add "Assisted routing" script
+	- Improve folder tcp layout
+	- Fix show/hide track state when creating/transforming tracks (audio and midi)
+	- Various small fix
+	- Code refactoring
+# Version 1.1
+	- Implement icons
+	- New auto routing script aratt_Automatic Routing static.lua with static routing enable
+	- Increase height of tracks (midi,audio,vsti and folder) in TCP
+	- Add return code to AutomaticRouting function
+# Version 1.0
+	- Add track types
+		- Audio Out
+		- VSTi
+		- Folder
+		- MIDI
+	- Add automatic routing
+	- Add scripts to create, transform and route tracks
+	- Add script to show/hide audio in TCP
+	- Add script to show/hide midi in MCP]]></changelog>
+        <source file="rtconfig.txt">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/rtconfig.txt</source>
+        <source file="aratt_toolbar_1.ReaperMenu">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_toolbar_1.ReaperMenu</source>
+        <source file="aratt_toolbar_2.ReaperMenu">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_toolbar_2.ReaperMenu</source>
+        <source>https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_package.lua</source>
+        <source file="aratt_core.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_core.lua</source>
+        <source file="aratt_template.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_template.lua</source>
+        <source main="main" file="aratt_Automatic Routing.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Automatic%20Routing.lua</source>
+        <source main="main" file="aratt_Create Audio Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Create%20Audio%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Audio Track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Create%20Audio%20Track.lua</source>
+        <source main="main" file="aratt_Create Audio and Midi Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Create%20Audio%20and%20Midi%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Audio and Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Create%20Audio%20and%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Create Folder Track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Create%20Folder%20Track.lua</source>
+        <source main="main" file="aratt_Create Fx Track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Create%20Fx%20Track.lua</source>
+        <source main="main" file="aratt_Create Midi Track for Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Create%20Midi%20Track%20for%20Vsti.lua</source>
+        <source main="main" file="aratt_Create Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Create%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Create Vsti Track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Create%20Vsti%20Track.lua</source>
+        <source main="main" file="aratt_Transform to Audio.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Transform%20to%20Audio.lua</source>
+        <source main="main" file="aratt_Transform to Default.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Transform%20to%20Default.lua</source>
+        <source main="main" file="aratt_Transform to Folder.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Transform%20to%20Folder.lua</source>
+        <source main="main" file="aratt_Transform to Fx.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Transform%20to%20Fx.lua</source>
+        <source main="main" file="aratt_Transform to Midi.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Transform%20to%20Midi.lua</source>
+        <source main="main" file="aratt_Transform to Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Transform%20to%20Vsti.lua</source>
+        <source main="main midi_editor midi_inlineeditor" file="aratt_Show FX of receives.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Show%20FX%20of%20receives.lua</source>
+        <source main="main midi_editor midi_inlineeditor" file="aratt_Show FX of sends.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Show%20FX%20of%20sends.lua</source>
+        <source main="main midi_editor midi_inlineeditor" file="aratt_Show input FX of receives.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Show%20input%20FX%20of%20receives.lua</source>
+        <source main="main midi_editor midi_inlineeditor" file="aratt_ShowHide Audio Track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_ShowHide%20Audio%20Track.lua</source>
+        <source main="main midi_editor midi_inlineeditor" file="aratt_ShowHide Midi Track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_ShowHide%20Midi%20Track.lua</source>
+        <source main="main" file="aratt_Remove Suffix.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Remove%20Suffix.lua</source>
+        <source main="main" file="aratt_Assisted Routing.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_Assisted%20Routing.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show FX of Audio.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_midi_Show%20FX%20of%20Audio.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show FX of Midi.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_midi_Show%20FX%20of%20Midi.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show FX of Vsti.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_midi_Show%20FX%20of%20Vsti.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show FX of parent track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_midi_Show%20FX%20of%20parent%20track.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show FX of routed track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_midi_Show%20FX%20of%20routed%20track.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show FX of track.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_midi_Show%20FX%20of%20track.lua</source>
+        <source main="midi_editor midi_inlineeditor" file="aratt_midi_Show input FX of Midi.lua">https://github.com/slsenseless/ReaScripts/raw/513ec7c4f4d74d775d95259935985b0234e6a2b3/aratt/aratt_midi_Show%20input%20FX%20of%20Midi.lua</source>
+      </version>
+    </reapack>
+  </category>
+  <category name="ccec">
+    <reapack name="ccec_package.lua" type="script" desc="CC/Envelope Connector">
+      <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 CC/Envelope Connector (CCEC) allows to easily synchronize midi CC with envelope by re-creating points along with their shapes. It can also be used to connect last touched param with midi CC or with a different track (tracks must be midi connected). To do all that, it automatically create ReaControlMIDI instances with specific presets (cf. installation process). Installation : - Create a track - Add ReaControlMIDI fx - Click "+", "Import preset library" - Import file "ccec.rpl"\par}
+}
+]]></description>
+        <link rel="website" href="https://github.com/slsenseless/ReaScripts">GitHub (Source code)</link>
+      </metadata>
+      <version name="1.0" author="slsenseless" time="2020-04-22T13:27:04Z">
+        <changelog><![CDATA[# Version 1.0
+	- Can update Midi CC from envelope
+	- Can update/create envelope from Midi CC
+	- Can Enable/Disable envelopes related to CC
+	- Can link last touched param with selected CC points
+	- Can add CC envelope on selected track and learn same CC on last touched param]]></changelog>
+        <source file="ccec_core.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_core.lua</source>
+        <source file="ccec.rpl">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec.rpl</source>
+        <source main="main" file="ccec_Update Midi CC of all tracks.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_Update%20Midi%20CC%20of%20all%20tracks.lua</source>
+        <source main="main" file="ccec_Update Midi CC of selected tracks.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_Update%20Midi%20CC%20of%20selected%20tracks.lua</source>
+        <source main="main" file="ccec_Update envelopes of all tracks.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_Update%20envelopes%20of%20all%20tracks.lua</source>
+        <source main="main" file="ccec_Update envelopes of selected tracks.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_Update%20envelopes%20of%20selected%20tracks.lua</source>
+        <source main="main" file="ccec_Add CC envelope on selected track and learn last touched param.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_Add%20CC%20envelope%20on%20selected%20track%20and%20learn%20last%20touched%20param.lua</source>
+        <source main="main" file="ccec_EnableDisable CC envelopes of selected tracks.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_EnableDisable%20CC%20envelopes%20of%20selected%20tracks.lua</source>
+        <source main="midi_editor" file="ccec_midi_EnableDisable CC envelopes.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_midi_EnableDisable%20CC%20envelopes.lua</source>
+        <source main="midi_editor" file="ccec_midi_Link last touched param with selected CC points.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_midi_Link%20last%20touched%20param%20with%20selected%20CC%20points.lua</source>
+        <source main="midi_editor" file="ccec_midi_Update Midi CC.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_midi_Update%20Midi%20CC.lua</source>
+        <source main="midi_editor" file="ccec_midi_Update envelopes.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_midi_Update%20envelopes.lua</source>
+      </version>
     </reapack>
   </category>
   <category name="cross_section_script">
@@ -256,6 +374,32 @@
         <changelog><![CDATA[# Version 1.0
 	- Make cross section script]]></changelog>
         <source main="main" file="Make cross section script.lua">https://github.com/slsenseless/ReaScripts/raw/f2b6a09b4355b211b4343288523d72d161f4f270/cross_section_script/Make%20cross%20section%20script.lua</source>
+      </version>
+    </reapack>
+  </category>
+  <category name="smooth_scrollnzoom">
+    <reapack name="smooth_scrollnzoom_package.lua" type="script" desc="Smooth Scroll'n Zoom">
+      <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 Smooth Scroll'n Zoom gives you smooth transition when scrolling/zooming even with stepped scroll-wheels. To make zoom in midi editor : - Open the action window - Go to midi editor section - Create a new custom action - First put a few "Modify MIDI CC/mousewheel 0.5x" or "Modify MIDI CC/mousewheel -10%" - Then put a couple of "Zoom horizontally/vertically (MIDI relative/mousewheel)" - Finally put "sleep.lua" between each zoom action - Example for horizontal zoom : 2*"Modify MIDI CC/mousewheel 0.5x", 8*"Zoom horizontally (MIDI relative/mousewheel)",7*"sleep.lua" - Example for vertical zoom : 2*"Modify MIDI CC/mousewheel 0.5x", 4*"Zoom horizontally (MIDI relative/mousewheel)",3*"sleep.lua" - Same trick can be applied to scrolling on midi if scrolling scripts perform badly Note : - Midi editor zooming doesn't work when playing :( - To improve midi editor scroll/zoom, updating the view configuration (CFGEDITVIEW) via the state chunk of the item/track has already been tried, without success. It seems that CFGEDITVIEW / CFGEDIT both have read-only values.\par}
+}
+]]></description>
+        <link rel="website" href="https://github.com/slsenseless/ReaScripts">GitHub (Source code)</link>
+      </metadata>
+      <version name="1.0" author="slsenseless" time="2020-04-22T13:27:31Z">
+        <changelog><![CDATA[# Version 1.0
+	- Smooth scroll and zoom on arrange view / midi editor.
+	- Midi editor zoom should be made with custom actions]]></changelog>
+        <source main="main" file="Arrange view smooth horizontal scroll.lua">https://github.com/slsenseless/ReaScripts/raw/baa5b26054ce7b8152ace7a73c3b143da3e0b1b3/smooth_scrollnzoom/Arrange%20view%20smooth%20horizontal%20scroll.lua</source>
+        <source main="main" file="Arrange view smooth horizontal zoom.lua">https://github.com/slsenseless/ReaScripts/raw/baa5b26054ce7b8152ace7a73c3b143da3e0b1b3/smooth_scrollnzoom/Arrange%20view%20smooth%20horizontal%20zoom.lua</source>
+        <source main="main" file="Arrange view smooth vertical scroll.lua">https://github.com/slsenseless/ReaScripts/raw/baa5b26054ce7b8152ace7a73c3b143da3e0b1b3/smooth_scrollnzoom/Arrange%20view%20smooth%20vertical%20scroll.lua</source>
+        <source main="main" file="Arrange view smooth vertical zoom.lua">https://github.com/slsenseless/ReaScripts/raw/baa5b26054ce7b8152ace7a73c3b143da3e0b1b3/smooth_scrollnzoom/Arrange%20view%20smooth%20vertical%20zoom.lua</source>
+        <source main="midi_editor" file="Midi editor smooth horizontal scroll.lua">https://github.com/slsenseless/ReaScripts/raw/baa5b26054ce7b8152ace7a73c3b143da3e0b1b3/smooth_scrollnzoom/Midi%20editor%20smooth%20horizontal%20scroll.lua</source>
+        <source main="midi_editor" file="Midi editor smooth vertical scroll.lua">https://github.com/slsenseless/ReaScripts/raw/baa5b26054ce7b8152ace7a73c3b143da3e0b1b3/smooth_scrollnzoom/Midi%20editor%20smooth%20vertical%20scroll.lua</source>
+        <source main="midi_editor" file="sleep.lua">https://github.com/slsenseless/ReaScripts/raw/baa5b26054ce7b8152ace7a73c3b143da3e0b1b3/smooth_scrollnzoom/sleep.lua</source>
       </version>
     </reapack>
   </category>
