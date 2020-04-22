@@ -1,5 +1,5 @@
 [Floating toolbar 2]
-icon_0=text
+icon_0=toolbar_misc_back_left_previous_more.png
 icon_1=text_wide
 icon_2=text_wide
 icon_3=text_wide
@@ -12,7 +12,7 @@ icon_9=text_wide
 icon_10=text_wide
 icon_11=text_wide
 icon_12=text_wide
-item_0=_RSc26cd47090f3cefc18c8eade9fa059250011843a  
+item_0=41646 Toolbars: Switch to main toolbar
 item_1=_RS92c75ed3e50afaa20525658dbac06b9489d4f2b4 To Folder
 item_2=_RSa6a55e39f7d1885b940690e6d37e03836ff6c6da To Vsti
 item_3=_RSa2444b1dbd698ac2d12f185a522f6284ae2754d5 To Audio

@@ -377,16 +377,16 @@ paramPair 	tcp_LabelPair 					18 0 20 50 80 110 140 170
 set scale 1
 calcTcpSecs
 resetHides
-doHideLogic 	tcp.recarm 		5
-doHideLogic 	tcp.recmon 		6
+;doHideLogic 	tcp.recarm 		5
+;doHideLogic 	tcp.recmon 		6
 doHideLogic 	tcp.label 		7
 doHideLogic 	tcp.volume 		8
 ;doHideLogic 	tcp.io 			9	; ARATT : I like to always keep it with default layout
 ;doHideLogic 	fx_group 		10	; ARATT : I like to always keep it with default layout
 doHideLogic 	tcp.env 		11
 ;doHideLogic 	pan_group 		12	; ARATT : I like to always keep it with default layout
-doHideLogic 	tcp.recmode 	13
-doHideLogic 	input_group 	14
+;doHideLogic 	tcp.recmode 	13		; ARATT : I like to always keep it with default layout
+;doHideLogic 	input_group 	14		; ARATT : I like to always keep it with default layout
 doHideLogic 	values 			15
 doHideLogic 	meter_values	16
 
@@ -491,16 +491,16 @@ Layout "Midi"
 	set scale 1
 	calcTcpSecs
 	resetHides
-	doHideLogic 	tcp.recarm 		5
-	doHideLogic 	tcp.recmon 		6
+	;doHideLogic 	tcp.recarm 		5	; I like to keep routing anyway
+	;doHideLogic 	tcp.recmon 		6
 	doHideLogic 	tcp.label 		7
 	doHideLogic 	tcp.volume 		8
-	;doHideLogic 	tcp.io 			9 ; I like to keep routing anyway
-	doHideLogic 	fx_group 		10
+	;doHideLogic 	tcp.io 			9
+	;doHideLogic 	fx_group 		10
 	doHideLogic 	tcp.env 		11
 	doHideLogic 	pan_group 		12
-	doHideLogic 	tcp.recmode 	13
-	doHideLogic 	input_group 	14
+	;doHideLogic 	tcp.recmode 	13
+	;doHideLogic 	input_group 	14
 	doHideLogic 	values 			15
 	doHideLogic 	meter_values	16*
 	

@@ -6,7 +6,7 @@
 @license
 	GNU GPLv3
 @version
-	1.4
+	1.5
 @links
 	GitHub (Source code) https://github.com/slsenseless/ReaScripts
 @metapackage
@@ -25,6 +25,12 @@
 	[main=main] aratt_Assisted*.lua
 	[main=midi_editor,midi_inlineeditor] aratt_midi_*.lua
 @changelog
+	# Version 1.5
+		- Rename "Show FX Audio" -> "Show FX of parent"
+		- Rename "Show FX of Midi" -> "Show FX of track"
+		- Rename "Show FX of Vsti" -> "Show FX of routed track"
+		- On rtconfig : Rec input and fx-in aren't hide anymore when mixer is here
+		- Update toolbar ReaperMenu
 	# Version 1.4
 		- Add Fx type ("aratt_Create Fx Track.lua" / "aratt_Transform to Fx.lua")
 		- Change envelope knob (longer one)
@@ -67,10 +73,9 @@
 		- Add script to show/hide audio in TCP
 		- Add script to show/hide midi in MCP
 @about
-	# ARATT 
-	## What is it ?
+	# What is it ?
 	Aratt (Automatic Routing And Track Types) is a package for Reaper which adds track types via template and facilitated routing between tracks.
-	## How to install it ?
+	# How to install it ?
 	You can download scripts via reapack.
 	To complete the installation, you will need to customize the default theme :
 	- Go to your reaper ressource path (Options -> Show REAPER resource path in explorer/finder) in the ColorThemes folder.
