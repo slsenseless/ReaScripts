@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="SL ReaScripts" commit="baa5b26054ce7b8152ace7a73c3b143da3e0b1b3">
+<index version="1" name="SL ReaScripts" commit="fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60">
   <category name="aratt">
     <reapack name="aratt_package.lua" type="script" desc="ARATT (Automatic Routing And Track Types)">
       <metadata>
@@ -331,7 +331,13 @@
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
-{\pard \ql \f0 \sa180 \li0 \fi0 CC/Envelope Connector (CCEC) allows to easily synchronize midi CC with envelope by re-creating points along with their shapes. It can also be used to connect last touched param with midi CC or with a different track (tracks must be midi connected). To do all that, it automatically create ReaControlMIDI instances with specific presets (cf. installation process). Installation : - Create a track - Add ReaControlMIDI fx - Click "+", "Import preset library" - Import file "ccec.rpl"\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 What is it ?\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 CC/Envelope Connector (CCEC) allows to easily synchronize midi CC with envelope by re-creating points along with their shapes. It can also be used to connect last touched param with midi CC or with a different track (tracks must be midi connected). To do all that, it automatically create ReaControlMIDI instances with specific presets (cf. installation process).\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 How to install it ?\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Create a track\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Add ReaControlMIDI fx\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Click "+", "Import preset library"\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab Import file "ccec.rpl"\sa180\par}
 }
 ]]></description>
         <link rel="website" href="https://github.com/slsenseless/ReaScripts">GitHub (Source code)</link>
@@ -355,6 +361,30 @@
         <source main="midi_editor" file="ccec_midi_Link last touched param with selected CC points.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_midi_Link%20last%20touched%20param%20with%20selected%20CC%20points.lua</source>
         <source main="midi_editor" file="ccec_midi_Update Midi CC.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_midi_Update%20Midi%20CC.lua</source>
         <source main="midi_editor" file="ccec_midi_Update envelopes.lua">https://github.com/slsenseless/ReaScripts/raw/f53a3116a1c0fc7849b1672f61850f828f69fb1b/ccec/ccec_midi_Update%20envelopes.lua</source>
+      </version>
+      <version name="1.1" author="slsenseless" time="2020-05-03T06:21:14Z">
+        <changelog><![CDATA[# Version 1.1
+	- Midi link last touched param with selected CC points now works with different tracks
+	- Add toggle state on enable/disable CC envelopes script
+	- Update about section
+# Version 1.0
+	- Can update Midi CC from envelope
+	- Can update/create envelope from Midi CC
+	- Can Enable/Disable envelopes related to CC
+	- Can link last touched param with selected CC points
+	- Can add CC envelope on selected track and learn same CC on last touched param]]></changelog>
+        <source file="ccec_core.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_core.lua</source>
+        <source file="ccec.rpl">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec.rpl</source>
+        <source main="main" file="ccec_Update Midi CC of all tracks.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_Update%20Midi%20CC%20of%20all%20tracks.lua</source>
+        <source main="main" file="ccec_Update Midi CC of selected tracks.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_Update%20Midi%20CC%20of%20selected%20tracks.lua</source>
+        <source main="main" file="ccec_Update envelopes of all tracks.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_Update%20envelopes%20of%20all%20tracks.lua</source>
+        <source main="main" file="ccec_Update envelopes of selected tracks.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_Update%20envelopes%20of%20selected%20tracks.lua</source>
+        <source main="main" file="ccec_Add CC envelope on selected track and learn last touched param.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_Add%20CC%20envelope%20on%20selected%20track%20and%20learn%20last%20touched%20param.lua</source>
+        <source main="main" file="ccec_EnableDisable CC envelopes of selected tracks.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_EnableDisable%20CC%20envelopes%20of%20selected%20tracks.lua</source>
+        <source main="midi_editor" file="ccec_midi_EnableDisable CC envelopes.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_midi_EnableDisable%20CC%20envelopes.lua</source>
+        <source main="midi_editor" file="ccec_midi_Link last touched param with selected CC points.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_midi_Link%20last%20touched%20param%20with%20selected%20CC%20points.lua</source>
+        <source main="midi_editor" file="ccec_midi_Update Midi CC.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_midi_Update%20Midi%20CC.lua</source>
+        <source main="midi_editor" file="ccec_midi_Update envelopes.lua">https://github.com/slsenseless/ReaScripts/raw/fafb4feeb7d5cd52a5db7cee131ddab9c6c8ad60/ccec/ccec_midi_Update%20envelopes.lua</source>
       </version>
     </reapack>
   </category>
