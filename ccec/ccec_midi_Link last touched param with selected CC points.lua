@@ -11,19 +11,14 @@ end
 
 local ccec = require("ccec_core")
 
-local retVal, _, fxData, paramNumber = reaper.GetLastTouchedFX()
-
-if not retVal then
-    reaper.ShowMessageBox("Please, select an fx parameter", "No fx parameter", 0)
-    return 1
-end
+local _, trackFxIdx, fxData, paramNumber = reaper.GetLastTouchedFX() -- trackFxIdx is 1-based ! retVal is always false when focused on midi editor !
 
 local mediaItem = reaper.GetSelectedMediaItem(0, 0)
-local track = reaper.GetMediaItem_Track(mediaItem)
 if mediaItem == nil then
     reaper.ShowMessageBox("Please, select a MIDI item", "No MIDI item", 0)
     return 1
 end
+local track = reaper.GetMediaItem_Track(mediaItem)
 
 reaper.PreventUIRefresh(1)
 reaper.Undo_BeginBlock()
@@ -57,7 +52,7 @@ for i = 0,ccCount - 1 do
 	end
 end
 
-if not ccec.AddLearnParam(track, fxData, paramNumber, ccNum) then
+if not ccec.AddLearnParam(reaper.GetTrack( 0, trackFxIdx - 1 ), fxData, paramNumber, ccNum) then
     reaper.ShowMessageBox("Chunk error", "Chunk error", 0)
 end
 

@@ -446,7 +446,7 @@ function ccec.AddLearnParam(track, fxData, paramNumber, ccNum)
 
 	-- MIDIPLINK [?] [?] [MIDI msg3] [MIDI msg2 : CC number, add 128 to MSB to get 14 bits CC]
 	local paramChunk = {
-	"<PROGRAMENV "..tostring(paramNumber)..paramName.." 0",
+	"<PROGRAMENV "..tostring(paramNumber).." 0",
 	"PARAMBASE 0",
 	"LFO 0",
 	"LFOWT 1 1",

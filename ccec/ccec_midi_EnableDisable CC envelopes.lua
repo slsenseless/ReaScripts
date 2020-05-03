@@ -23,6 +23,9 @@ reaper.Main_OnCommand( 40297, 0 ) -- Unselect all track
 reaper.Main_OnCommand( reaper.NamedCommandLookup( "_SWS_SELTRKWITEM" ), 0 ) -- Select only track with selected items
 
 local toggleValue = nil
+local _,_,sectionID,cmdID,_,_,_ = reaper.get_action_context()
+local commandName = "_RSb10694c58c44bd1063285bc0ca1c981357b26472"
+
 
 local i = 0
 for i=0,reaper.CountSelectedTracks( 0 ) - 1 do
@@ -38,11 +41,15 @@ for i=0,reaper.CountSelectedTracks( 0 ) - 1 do
 				toggleValue = "ACT 0"
 			end
 			envelopeStateChunk = string.gsub(envelopeStateChunk, "ACT 1", toggleValue )
+			reaper.SetToggleCommandState( sectionID, cmdID, 0 )
+			reaper.SetToggleCommandState( 0,  reaper.NamedCommandLookup( commandName ), 0 )
 		else
 			if toggleValue == nil then
 				toggleValue = "ACT 1"
 			end
 			envelopeStateChunk = string.gsub(envelopeStateChunk, "ACT 0", toggleValue )
+			reaper.SetToggleCommandState( sectionID, cmdID, 1 )
+			reaper.SetToggleCommandState( 0,  reaper.NamedCommandLookup( commandName ), 1 )
 		end
 		
 		reaper.SetEnvelopeStateChunk( evenlope, envelopeStateChunk, true )
